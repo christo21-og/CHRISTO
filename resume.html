@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" x-data="app()" :class="{'dark':dark}" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Resume of Christo Praveen Kumar: education, internships, projects, skills and certifications.">
+<meta name="author" content="Christo Praveen Kumar">
+<meta property="og:title" content="Resume — Christo Praveen Kumar">
+<meta property="og:description" content="Resume of Christo Praveen Kumar: education, internships, projects, skills and certifications.">
+<meta property="og:type" content="website">
+<title>Resume — Christo Praveen Kumar</title>
+<script>try{if((localStorage.getItem('theme')||'light')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { display: ['Fraunces','serif'], body: ['Plus Jakarta Sans','sans-serif'] },
+      colors: { accent: '#1D4F91', 'accent-light': '#2A62AE', slate: {50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1e293b',900:'#0f172a',950:'#020617'}, blue: {50:'#eef4fb',200:'#c9dcf2',950:'#0f172a'} }
+    }
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{font-family:'Plus Jakarta Sans',sans-serif}
+h1,h2,h3,h4,h5,h6{font-family:'Fraunces',serif}
+body{transition:background-color .3s,color .3s}
+
+/* noise overlay */
+body::before{display:none;content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#1D4F91;border-radius:99px}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* nav underline animation */
+.nl{position:relative}
+.nl::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .22s cubic-bezier(.4,0,.2,1)}
+.nl:hover::after,.nl.on::after{width:100%}
+.nl.on{font-weight:500}
+
+/* button */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1)}
+.shimmer:hover::after{left:160%}
+
+/* photo frames */
+.pf{overflow:hidden;background:#cbd5e1}
+.pf img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* card hover */
+.card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s}
+.card-h:hover{transform:translateY(-4px)}
+
+/* skill tag */
+.stag{transition:border-color .18s}
+
+[x-cloak]{display:none!important}
+
+/* ── enhancements ── */
+.text-accent{color:#1D4F91}
+.dark .text-accent{color:#7FAEE8}
+.dark .text-accent{color:#7FAEE8}
+.dark [class*="hover:text-accent"]:hover,.dark [class*="group-hover:text-accent"]{color:#7FAEE8}
+.bg-grid{background:none}
+.caret{display:inline-block;width:3px;height:.9em;margin-left:4px;background:#1D4F91;vertical-align:-.08em;animation:blink 1s steps(1) infinite}
+.dark .caret{background:#7FAEE8}
+@keyframes blink{50%{opacity:0}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.floaty{animation:floaty 5s ease-in-out infinite}
+.floaty.f2{animation-delay:-2s}.floaty.f3{animation-delay:-3.5s}
+.card-h:hover,.project-card:hover{box-shadow:none}
+::selection{background:#1D4F91;color:#fff}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}.floaty,.caret{animation:none}}
+
+/* ── round 2: motion + backgrounds ── */
+.blob{position:absolute;border-radius:9999px;filter:blur(64px);pointer-events:none;animation:drift 18s ease-in-out infinite}
+.blob.b2{animation-duration:23s;animation-delay:-6s}.blob.b3{animation-duration:27s;animation-delay:-12s}
+@keyframes drift{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(40px,-30px,0) scale(1.08)}66%{transform:translate3d(-30px,35px,0) scale(.94)}}
+.bg-dots{background:none}
+.dark .bg-dots{background:none}
+.eyebrow{display:flex;width:fit-content;align-items:center;gap:.65rem}
+.eyebrow::before{content:'';width:28px;height:2px;background:#1D4F91}
+.ring-spin{background:#1D4F91}
+@keyframes spin{to{transform:rotate(360deg)}}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;gap:.75rem;animation:marquee 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(calc(-50% - .375rem))}}
+.card-h{position:relative}
+.card-h::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(29,79,145,.16),transparent 45%)}
+.card-h:hover::after{opacity:0}
+.tilt-active{transition:transform .12s ease-out!important;will-change:transform}
+.shot img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.ping-dot{position:absolute}
+.ping-dot::after{content:'';position:absolute;inset:-5px;border-radius:9999px;border:2px solid #1D4F91;opacity:.7;animation:ping2 2.4s cubic-bezier(0,0,.2,1) infinite}
+@keyframes ping2{75%,100%{transform:scale(1.9);opacity:0}}
+.cue{animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(8px);opacity:1}}
+@media (prefers-reduced-motion:reduce){.blob,.ring-spin,.marquee-track,.ping-dot::after,.cue{animation:none!important}}
+
+/* ── calm mode: no looping / ambient animation ── */
+.blob,.ring-spin,.floaty,.caret,.cue,.marquee-track{animation:none!important}
+.ping-dot::after{display:none}
+
+/* ── round 3: minimal layout helpers + print ── */
+.prose-min p{line-height:1.8}
+.rule{height:1px;background:linear-gradient(90deg,transparent,rgba(100,116,139,.35),transparent)}
+@media print{
+  header,footer,canvas,.blob,.bg-grid,.bg-dots,.marquee,.no-print,.cue,.ring-spin{display:none!important}
+  html,body{background:#fff!important;color:#111!important}
+  body::before{display:none}
+  .reveal{opacity:1!important;transform:none!important}
+  section{padding-top:1.2rem!important;padding-bottom:1.2rem!important}
+  a{color:inherit!important;text-decoration:none!important}
+  .card-h{border:1px solid #cbd5e1!important;break-inside:avoid}
+  .text-accent{background:none!important;color:#163D73!important;-webkit-text-fill-color:#163D73}
+}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23B4532A'/%3E%3Ctext x='16' y='23' font-size='19' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EC%3C/text%3E%3C/svg%3E">
+
+
+</head>
+<body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] bg-accent text-white px-4 py-2 rounded-full text-sm">Skip to content</a>
+<div class="fixed top-0 left-0 h-[3px] z-[60] bg-accent no-print" :style="`width:${prog}%`" aria-hidden="true"></div>
+
+<header class="fixed inset-x-0 top-0 z-50 transition-all duration-300" :class="sc?'bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-100 dark:border-slate-900':''">
+  <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+    <a href="index.html" class="font-display font-bold text-[13px] sm:text-base tracking-[.08em] sm:tracking-[.12em] uppercase whitespace-nowrap text-slate-900 dark:text-white" aria-label="Christo Praveen Kumar, home">Christo Praveen Kumar</a>
+    <ul class="hidden md:flex items-center gap-8 text-sm" role="list"><li><a href="about.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">About</a></li><li><a href="projects.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">Projects</a></li><li><a href="experience.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">Experience</a></li><li><a href="resume.html" class="nl on text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors !text-slate-900 dark:!text-white">Resume</a></li><li><a href="contact.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">Contact</a></li></ul>
+    <div class="flex items-center gap-3">
+      <button @click="dark=!dark" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" :aria-label="dark?'Light mode':'Dark mode'">
+        <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg x-show="dark" x-cloak class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+      </button>
+      <button @click="mm=!mm" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800" :aria-expanded="mm" aria-label="Toggle menu">
+        <svg x-show="!mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="mm" x-cloak class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div x-show="mm" x-cloak x-transition class="md:hidden bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-900">
+    <ul class="flex flex-col px-6 py-5 gap-4 text-sm font-medium" role="list"><li><a href="about.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">About</a></li><li><a href="projects.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">Projects</a></li><li><a href="experience.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">Experience</a></li><li><a href="resume.html" class="block text-accent hover:text-accent transition-colors">Resume</a></li><li><a href="contact.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">Contact</a></li></ul>
+  </div>
+</header>
+
+<a href="#main" x-show="sc" x-cloak x-transition.opacity class="no-print fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-accent-light transition-colors" aria-label="Back to top"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg></a>
+
+<main id="main">
+<section class="relative overflow-hidden pt-36 pb-14">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <p class="reveal  eyebrow text-xs font-medium text-accent tracking-widest uppercase mb-3">Resume</p>
+    <h1 class="reveal d1 font-display font-bold text-4xl md:text-6xl tracking-tight leading-tight mb-4">Christo Praveen Kumar D</h1>
+    <p class="reveal d2 text-lg text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">B.Tech Information Technology student · Chennai, India</p>
+  </div>
+</section>
+
+<section class="relative pb-16"><div class="max-w-5xl mx-auto px-6"><div class="max-w-3xl">
+  <div class="flex flex-wrap items-center gap-4 mb-6 no-print">
+    <button type="button" @click="printResume()" class="inline-flex items-center gap-2 bg-accent text-white font-medium px-6 py-3 rounded-full hover:bg-accent-light transition-colors text-sm">Print / save as PDF</button>
+    <!-- TODO: to also offer a ready-made PDF, put it in assets/ and link it here -->
+    <div class="flex gap-3 no-print"><a href="mailto:christopraveenkumar1@gmail.com" aria-label="Email" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a><a href="https://www.linkedin.com/in/christo-praveen-kumar-00892a300/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a><a href="tel:+918489486476" aria-label="Call +91 84894 86476" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></a></div>
+  </div>
+  <p class="hidden print:block text-sm mb-4">christopraveenkumar1@gmail.com &middot; linkedin.com/in/christo-praveen-kumar-00892a300 &middot; +91 84894 86476</p>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Summary</h2><p class="text-slate-600 dark:text-slate-300 leading-relaxed">B.Tech Information Technology student (3rd year, <a href="https://kcgcollege.ac.in/" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted underline-offset-4 hover:text-accent hover:decoration-solid transition-colors">KCG College of Technology</a>) currently interning in AI/ML at Nokia, with a strong foundation in full-stack development, AI, data science and UI/UX design. Hands-on experience with the MERN stack, Python, deep learning and AI-powered applications, plus Figma-driven design. Independently built three websites through structured prompt engineering.</p></section>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Experience</h2><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">AI/ML Intern</h3><span class="text-sm text-slate-500 dark:text-slate-400">Current &middot; 6 months</span></div><p class="text-sm text-slate-500 dark:text-slate-400">Nokia Solutions, Oragadam</p><p class="text-sm text-slate-600 dark:text-slate-300 mt-2">Currently working as an AI/ML intern (six-month internship).</p></div><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">Data Science Intern</h3><span class="text-sm text-slate-500 dark:text-slate-400">2 weeks</span></div><p class="text-sm text-slate-500 dark:text-slate-400">DLK Software Solutions, Vadapalani, Chennai</p><ul class="list-disc pl-5 mt-2 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 marker:text-accent"><li>Completed hands-on training in data science concepts, tools and analytical workflows.</li><li>Applied data cleaning, exploratory analysis and visualization to real-world datasets.</li><li>Developed an end-to-end analysis of air pollution trends across multiple countries.</li></ul></div></section>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Projects</h2><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">HIRY — Agentic AI Personal Assistant</h3><span class="text-sm text-slate-500 dark:text-slate-400"></span></div><p class="text-sm text-slate-500 dark:text-slate-400">LLMs · RAG · multi-agent · n8n</p><ul class="list-disc pl-5 mt-2 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 marker:text-accent"><li>Developed an agentic AI assistant integrating LLMs, RAG, multi-agent collaboration and graph-based long-term memory.</li><li>Built multi-agent workflows with external APIs and n8n automation for task execution and productivity.</li><li>Integrated voice interaction and designed a modular, context-aware architecture for autonomous AI workflows.</li></ul></div><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">Emergency-Response Metaverse</h3><span class="text-sm text-slate-500 dark:text-slate-400"></span></div><p class="text-sm text-slate-500 dark:text-slate-400">3D emergency evacuation simulation · Three.js · WebGL</p><ul class="list-disc pl-5 mt-2 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 marker:text-accent"><li>Developed the front-end and 3D environment: classrooms, corridors, stairs, furniture, textures, materials, lighting and shadows.</li><li>Implemented real-time fire, smoke and ember particle effects with environmental effects and cinematic lighting.</li><li>Built first-person navigation, collision handling, HUD and minimap supporting the evacuation experience.</li></ul></div><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">PEDMED — Personal Medical Assistant</h3><span class="text-sm text-slate-500 dark:text-slate-400"></span></div><p class="text-sm text-slate-500 dark:text-slate-400">EfficientNet · API integration · AI chatbot · Hackathon</p><ul class="list-disc pl-5 mt-2 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 marker:text-accent"><li>Developed an AI-powered medical assistant app for detecting skin and eye diseases through image analysis using the EfficientNet deep learning model.</li><li>Integrated an AI chatbot for symptom guidance and external APIs for enhanced diagnostic support.</li></ul></div><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">MEDPLUS — Personal Diabetic Assistant</h3><span class="text-sm text-slate-500 dark:text-slate-400"></span></div><p class="text-sm text-slate-500 dark:text-slate-400">Full-stack · API integration · Figma (UI/UX) · Mini-project</p><ul class="list-disc pl-5 mt-2 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 marker:text-accent"><li>Built a full-stack diabetic management app for all age groups, supporting users with and without diabetes to track their health progress.</li><li>Implemented multiple diagnostic tests, an AI chatbot, progress tracking and medical insurance verification using API integration.</li><li>Designed the complete UI/UX in Figma with a clean, accessible and user-friendly interface.</li></ul></div><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">ROUTESYNC — Carpooling Web App</h3><span class="text-sm text-slate-500 dark:text-slate-400"></span></div><p class="text-sm text-slate-500 dark:text-slate-400">MERN Stack · Figma (UI/UX) · Hackathon</p><ul class="list-disc pl-5 mt-2 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 marker:text-accent"><li>Developed a full-stack carpooling web application enabling users to find, share and manage rides efficiently.</li><li>Designed the UI/UX in Figma with an intuitive, responsive interface that works seamlessly across devices.</li></ul></div></section>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Education</h2><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">B.Tech, Information Technology</h3><span class="text-sm text-slate-500 dark:text-slate-400">2023 – 2027</span></div><p class="text-sm text-slate-500 dark:text-slate-400"><a href="https://kcgcollege.ac.in/" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted underline-offset-4 hover:text-accent hover:decoration-solid transition-colors">KCG College of Technology</a> · CGPA 8.0 / 10</p></div><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">Secondary education</h3><span class="text-sm text-slate-500 dark:text-slate-400">2021 – 2023</span></div><p class="text-sm text-slate-500 dark:text-slate-400">St. Antony's Matriculation School · 88%</p></div><div class="mb-6"><div class="flex flex-wrap justify-between gap-2"><h3 class="font-display font-bold text-lg">High school</h3><span class="text-sm text-slate-500 dark:text-slate-400">2020 – 2021</span></div><p class="text-sm text-slate-500 dark:text-slate-400">St. Joseph Higher Secondary School · Grade A</p></div></section>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Technical skills</h2><dl class="grid sm:grid-cols-[11rem_1fr] gap-x-6 gap-y-2 text-sm"><dt class="font-medium">Languages</dt><dd class="text-slate-600 dark:text-slate-300 mb-2 sm:mb-0">Java, Python, C, SQL</dd><dt class="font-medium">Web &amp; full stack</dt><dd class="text-slate-600 dark:text-slate-300 mb-2 sm:mb-0">MERN Stack, Spring Boot, HTML, CSS, Three.js, WebGL</dd><dt class="font-medium">AI &amp; machine learning</dt><dd class="text-slate-600 dark:text-slate-300 mb-2 sm:mb-0">TensorFlow, Scikit-learn, EfficientNet, LLMs, RAG, AI Agents, AI Prompt Engineering</dd><dt class="font-medium">Data &amp; analytics</dt><dd class="text-slate-600 dark:text-slate-300 mb-2 sm:mb-0">Pandas, NumPy, Data Analysis, Data Visualization</dd><dt class="font-medium">Databases</dt><dd class="text-slate-600 dark:text-slate-300 mb-2 sm:mb-0">MySQL, MongoDB</dd><dt class="font-medium">Tools</dt><dd class="text-slate-600 dark:text-slate-300 mb-2 sm:mb-0">Git, Postman, n8n</dd><dt class="font-medium">UI/UX &amp; methodology</dt><dd class="text-slate-600 dark:text-slate-300 mb-2 sm:mb-0">Figma, Agile</dd></dl></section>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Certifications</h2><div class="grid sm:grid-cols-2 gap-3"><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">Cisco</p><p class="text-sm font-medium">CCNA: Switching, Routing &amp; Wireless Essentials</p></div><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">Cisco</p><p class="text-sm font-medium">CCNA: Introduction to Networks</p></div><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">Cisco</p><p class="text-sm font-medium">Introduction to Cybersecurity</p></div><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">Cisco</p><p class="text-sm font-medium">Python Essentials 1</p></div><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">Cisco</p><p class="text-sm font-medium">Python Essentials 2</p></div><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">IBM</p><p class="text-sm font-medium">Data Science 101</p></div><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">IIT Madras</p><p class="text-sm font-medium">Cloud Computing</p></div><div class="card-h rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 hover:border-accent"><p class="text-[11px] font-medium text-accent tracking-widest uppercase">IIT Madras</p><p class="text-sm font-medium">Internet of Things (IoT)</p></div></div></section>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Beyond tech</h2><ul class="list-disc pl-5 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 marker:text-accent"><li><strong>Leadership:</strong> natural at setting direction and steering a team toward a vision; on track to grow into a director role.</li><li><strong>Scriptwriting:</strong> written three original scripts on climate awareness, mental health, ethical responsibility and suspense (complete stories with structure, character and dialogue).</li></ul></section>
+<section class="reveal py-8 border-t border-slate-100 dark:border-slate-900 break-inside-avoid"><h2 class="font-display font-bold text-sm tracking-widest uppercase text-accent mb-5">Areas of interest</h2><p class="text-sm text-slate-600 dark:text-slate-300">AI/ML · Generative AI · Full-stack development · UI/UX · Health-tech · 3D web</p></section>
+</div></div></section>
+
+</main>
+
+<footer class="border-t border-slate-100 dark:border-slate-900">
+  <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate-400">&copy; <span id="yr"></span> Christo Praveen Kumar <span class="mx-1">&middot;</span> Chennai, India</p>
+    <div class="flex gap-3 no-print"><a href="mailto:christopraveenkumar1@gmail.com" aria-label="Email" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a><a href="https://www.linkedin.com/in/christo-praveen-kumar-00892a300/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a><a href="tel:+918489486476" aria-label="Call +91 84894 86476" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></a></div>
+  </div>
+</footer>
+
+<script>
+function app() {
+  return {
+    dark: false, mm: false, sc: false, prog: 0, role: 'Full-stack developer',
+    init() {
+      let st = null; try { st = localStorage.getItem('theme'); } catch (e) {}
+      this.dark = st ? st === 'dark' : false;
+      this.$watch('dark', v => { try { localStorage.setItem('theme', v ? 'dark' : 'light'); } catch (e) {} });
+      const onScroll = () => {
+        this.sc = window.scrollY > 20;
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        this.prog = h > 0 ? (window.scrollY / h) * 100 : 0;
+      };
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+      const y = document.getElementById('yr'); if (y) y.textContent = new Date().getFullYear();
+    },
+    printResume() {
+      const d = this.dark; this.dark = false;
+      this.$nextTick(() => { window.print(); this.dark = d; });
+    }
+  };
+}
+</script>
+<script>
+(function(){
+  // cursor spotlight on cards (hover only)
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.addEventListener('mousemove', e => {
+    const c = e.target.closest && e.target.closest('.card-h');
+    if (!c) return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

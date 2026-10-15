@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" x-data="app()" :class="{'dark':dark}" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Christo Praveen Kumar, B.Tech IT student in Chennai and currently an AI/ML intern at Nokia. AI-powered apps, full-stack products and Figma-designed interfaces.">
+<meta name="author" content="Christo Praveen Kumar">
+<meta property="og:title" content="CHRISTO PRAVEEN KUMAR">
+<meta property="og:description" content="Christo Praveen Kumar, B.Tech IT student in Chennai and currently an AI/ML intern at Nokia. AI-powered apps, full-stack products and Figma-designed interfaces.">
+<meta property="og:type" content="website">
+<title>CHRISTO PRAVEEN KUMAR</title>
+<script>try{if((localStorage.getItem('theme')||'light')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { display: ['Fraunces','serif'], body: ['Plus Jakarta Sans','sans-serif'] },
+      colors: { accent: '#1D4F91', 'accent-light': '#2A62AE', slate: {50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1e293b',900:'#0f172a',950:'#020617'}, blue: {50:'#eef4fb',200:'#c9dcf2',950:'#0f172a'} }
+    }
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{font-family:'Plus Jakarta Sans',sans-serif}
+h1,h2,h3,h4,h5,h6{font-family:'Fraunces',serif}
+body{transition:background-color .3s,color .3s}
+
+/* noise overlay */
+body::before{display:none;content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#1D4F91;border-radius:99px}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* nav underline animation */
+.nl{position:relative}
+.nl::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .22s cubic-bezier(.4,0,.2,1)}
+.nl:hover::after,.nl.on::after{width:100%}
+.nl.on{font-weight:500}
+
+/* button */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1)}
+.shimmer:hover::after{left:160%}
+
+/* photo frames */
+.pf{overflow:hidden;background:#cbd5e1}
+.pf img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* card hover */
+.card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s}
+.card-h:hover{transform:translateY(-4px)}
+
+/* skill tag */
+.stag{transition:border-color .18s}
+
+[x-cloak]{display:none!important}
+
+/* ── enhancements ── */
+.text-accent{color:#1D4F91}
+.dark .text-accent{color:#7FAEE8}
+.dark .text-accent{color:#7FAEE8}
+.dark [class*="hover:text-accent"]:hover,.dark [class*="group-hover:text-accent"]{color:#7FAEE8}
+.bg-grid{background:none}
+.caret{display:inline-block;width:3px;height:.9em;margin-left:4px;background:#1D4F91;vertical-align:-.08em;animation:blink 1s steps(1) infinite}
+.dark .caret{background:#7FAEE8}
+@keyframes blink{50%{opacity:0}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.floaty{animation:floaty 5s ease-in-out infinite}
+.floaty.f2{animation-delay:-2s}.floaty.f3{animation-delay:-3.5s}
+.card-h:hover,.project-card:hover{box-shadow:none}
+::selection{background:#1D4F91;color:#fff}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}.floaty,.caret{animation:none}}
+
+/* ── round 2: motion + backgrounds ── */
+.blob{position:absolute;border-radius:9999px;filter:blur(64px);pointer-events:none;animation:drift 18s ease-in-out infinite}
+.blob.b2{animation-duration:23s;animation-delay:-6s}.blob.b3{animation-duration:27s;animation-delay:-12s}
+@keyframes drift{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(40px,-30px,0) scale(1.08)}66%{transform:translate3d(-30px,35px,0) scale(.94)}}
+.bg-dots{background:none}
+.dark .bg-dots{background:none}
+.eyebrow{display:flex;width:fit-content;align-items:center;gap:.65rem}
+.eyebrow::before{content:'';width:28px;height:2px;background:#1D4F91}
+.ring-spin{background:#1D4F91}
+@keyframes spin{to{transform:rotate(360deg)}}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;gap:.75rem;animation:marquee 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(calc(-50% - .375rem))}}
+.card-h{position:relative}
+.card-h::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(29,79,145,.16),transparent 45%)}
+.card-h:hover::after{opacity:0}
+.tilt-active{transition:transform .12s ease-out!important;will-change:transform}
+.shot img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.ping-dot{position:absolute}
+.ping-dot::after{content:'';position:absolute;inset:-5px;border-radius:9999px;border:2px solid #1D4F91;opacity:.7;animation:ping2 2.4s cubic-bezier(0,0,.2,1) infinite}
+@keyframes ping2{75%,100%{transform:scale(1.9);opacity:0}}
+.cue{animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(8px);opacity:1}}
+@media (prefers-reduced-motion:reduce){.blob,.ring-spin,.marquee-track,.ping-dot::after,.cue{animation:none!important}}
+
+/* ── calm mode: no looping / ambient animation ── */
+.blob,.ring-spin,.floaty,.caret,.cue,.marquee-track{animation:none!important}
+.ping-dot::after{display:none}
+
+/* ── round 3: minimal layout helpers + print ── */
+.prose-min p{line-height:1.8}
+.rule{height:1px;background:linear-gradient(90deg,transparent,rgba(100,116,139,.35),transparent)}
+@media print{
+  header,footer,canvas,.blob,.bg-grid,.bg-dots,.marquee,.no-print,.cue,.ring-spin{display:none!important}
+  html,body{background:#fff!important;color:#111!important}
+  body::before{display:none}
+  .reveal{opacity:1!important;transform:none!important}
+  section{padding-top:1.2rem!important;padding-bottom:1.2rem!important}
+  a{color:inherit!important;text-decoration:none!important}
+  .card-h{border:1px solid #cbd5e1!important;break-inside:avoid}
+  .text-accent{background:none!important;color:#163D73!important;-webkit-text-fill-color:#163D73}
+}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23B4532A'/%3E%3Ctext x='16' y='23' font-size='19' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EC%3C/text%3E%3C/svg%3E">
+
+
+</head>
+<body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] bg-accent text-white px-4 py-2 rounded-full text-sm">Skip to content</a>
+<div class="fixed top-0 left-0 h-[3px] z-[60] bg-accent no-print" :style="`width:${prog}%`" aria-hidden="true"></div>
+
+<header class="fixed inset-x-0 top-0 z-50 transition-all duration-300" :class="sc?'bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-100 dark:border-slate-900':''">
+  <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+    <a href="index.html" class="font-display font-bold text-[13px] sm:text-base tracking-[.08em] sm:tracking-[.12em] uppercase whitespace-nowrap text-slate-900 dark:text-white" aria-label="Christo Praveen Kumar, home">Christo Praveen Kumar</a>
+    <ul class="hidden md:flex items-center gap-8 text-sm" role="list"><li><a href="about.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">About</a></li><li><a href="projects.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">Projects</a></li><li><a href="experience.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">Experience</a></li><li><a href="resume.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">Resume</a></li><li><a href="contact.html" class="nl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ">Contact</a></li></ul>
+    <div class="flex items-center gap-3">
+      <button @click="dark=!dark" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" :aria-label="dark?'Light mode':'Dark mode'">
+        <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg x-show="dark" x-cloak class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+      </button>
+      <button @click="mm=!mm" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800" :aria-expanded="mm" aria-label="Toggle menu">
+        <svg x-show="!mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="mm" x-cloak class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div x-show="mm" x-cloak x-transition class="md:hidden bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-900">
+    <ul class="flex flex-col px-6 py-5 gap-4 text-sm font-medium" role="list"><li><a href="about.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">About</a></li><li><a href="projects.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">Projects</a></li><li><a href="experience.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">Experience</a></li><li><a href="resume.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">Resume</a></li><li><a href="contact.html" class="block text-slate-700 dark:text-slate-300 hover:text-accent transition-colors">Contact</a></li></ul>
+  </div>
+</header>
+
+<a href="#main" x-show="sc" x-cloak x-transition.opacity class="no-print fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-accent-light transition-colors" aria-label="Back to top"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg></a>
+
+<main id="main">
+
+<section id="hero" class="relative overflow-hidden min-h-screen flex items-center pt-24 pb-16">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-6 w-full">
+    <div class="grid md:grid-cols-[1.15fr_.85fr] gap-14 items-center">
+      <div>
+        <p class="reveal  eyebrow text-xs font-medium text-accent tracking-widest uppercase mb-3">Christo Praveen Kumar</p>
+        <h1 class="reveal d1 font-display font-bold text-5xl md:text-6xl tracking-tight leading-[1.05] mb-4">Hi, I'm <span class="text-accent">Christo</span>.</h1>
+        <p class="reveal d2 font-display text-2xl md:text-3xl font-semibold text-slate-700 dark:text-slate-200 mb-5 min-h-[2.5rem]" aria-live="off"><span class="text-accent" x-text="role">Full-stack developer</span></p>
+        <p class="reveal d2 text-lg text-slate-500 dark:text-slate-400 font-light leading-relaxed max-w-md mb-9">B.Tech IT student at <a href="https://kcgcollege.ac.in/" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted underline-offset-4 hover:text-accent hover:decoration-solid transition-colors">KCG College of Technology</a> and currently an AI/ML intern at Nokia. I build full-stack web products and design clean, usable interfaces in Figma.</p>
+        <div class="reveal d3 flex flex-wrap items-center gap-4 mb-10">
+          <a href="projects.html" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium px-7 py-3.5 rounded-full hover:bg-slate-700 dark:hover:bg-slate-200 transition-colors text-sm">View projects &rarr;</a>
+          <a href="resume.html" class="inline-flex items-center gap-2 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium px-7 py-3.5 rounded-full hover:border-accent hover:text-accent transition-colors text-sm">Resume</a>
+        </div>
+        <div class="reveal d3"><div class="flex gap-3 no-print"><a href="mailto:christopraveenkumar1@gmail.com" aria-label="Email" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a><a href="https://www.linkedin.com/in/christo-praveen-kumar-00892a300/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a><a href="tel:+918489486476" aria-label="Call +91 84894 86476" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></a></div></div>
+        <div class="reveal d4 flex gap-10 mt-12 pt-8 border-t border-slate-100 dark:border-slate-900">
+          <div><p class="font-display font-bold text-3xl" data-count="5">5</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Projects</p></div>
+          <div><p class="font-display font-bold text-3xl" data-count="2">2</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Internships</p></div>
+          <div><p class="font-display font-bold text-3xl" data-count="8">8</p><p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Certifications</p></div>
+        </div>
+      </div>
+      <div class="reveal d2 flex justify-center md:justify-end">
+        <div class="relative w-72 h-80 md:w-80 md:h-[26rem]">
+          <div class="absolute -inset-[3px] rounded-[1.65rem] overflow-hidden" aria-hidden="true"></div>
+          <div class="pf relative w-full h-full rounded-3xl"><img src="assets/photo.jpg" alt="Portrait of Christo Praveen Kumar" loading="eager" style="object-position:50% 14%"></div>
+          <a href="https://kcgcollege.ac.in/" target="_blank" rel="noopener noreferrer" class="absolute -bottom-4 -left-4 z-20 bg-accent text-white font-display font-bold text-sm px-4 py-2.5 rounded-2xl shadow-lg" aria-label="KCG College of Technology website" style="text-decoration:none">B.Tech IT &middot; KCG</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<section id="intro" class="relative overflow-hidden py-24">
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <div class="grid md:grid-cols-[.35fr_1fr] gap-10">
+      <div><p class="reveal  eyebrow text-xs font-medium text-accent tracking-widest uppercase mb-3">Intro</p></div>
+      <div class="prose-min">
+        <p class="reveal text-xl md:text-2xl font-display font-semibold leading-snug mb-6">I build practical software where AI, full-stack engineering and thoughtful design meet.</p>
+        <p class="reveal d1 text-slate-500 dark:text-slate-400 mb-5">I'm pursuing a B.Tech in Information Technology at <a href="https://kcgcollege.ac.in/" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted underline-offset-4 hover:text-accent hover:decoration-solid transition-colors">KCG College of Technology</a> in Chennai (2023 – 2027), with a foundation in full-stack development, AI, data science and UI/UX design. I also use structured prompt engineering to prototype quickly: I've independently built three websites that way.</p>
+        <p class="reveal d2 text-slate-500 dark:text-slate-400 mb-8">My experience includes a current AI/ML internship at Nokia Solutions in Oragadam and a data science internship at DLK Software Solutions. My best work so far is HIRY, an agentic AI assistant, and the Emergency-Response Metaverse, a 3D evacuation simulation. I've also built PEDMED, an EfficientNet-based disease detector, a diabetic assistant and a full-stack carpooling app.</p>
+        <div class="reveal d3 flex flex-wrap gap-2 mb-8" role="list" aria-label="Areas of interest">
+          <span role="listitem" class="stag text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-3.5 py-1.5 rounded-full hover:border-accent">AI/ML</span><span role="listitem" class="stag text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-3.5 py-1.5 rounded-full hover:border-accent">Generative AI</span><span role="listitem" class="stag text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-3.5 py-1.5 rounded-full hover:border-accent">Full-stack development</span><span role="listitem" class="stag text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-3.5 py-1.5 rounded-full hover:border-accent">UI/UX</span><span role="listitem" class="stag text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-3.5 py-1.5 rounded-full hover:border-accent">Health-tech</span><span role="listitem" class="stag text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-3.5 py-1.5 rounded-full hover:border-accent">3D web</span>
+        </div>
+        <a href="experience.html" class="reveal d3 inline-flex items-center gap-1.5 text-sm font-medium nl">More about my experience &rarr;</a> <a href="about.html" class="reveal d3 inline-flex items-center gap-1.5 text-sm font-medium nl ml-6">About me &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="relative overflow-hidden py-24 bg-slate-50 dark:bg-slate-900/40">
+  <div class="bg-dots absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+      <div><p class="reveal  eyebrow text-xs font-medium text-accent tracking-widest uppercase mb-3">Featured projects</p><h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl">My two best projects</h2></div>
+      <a href="projects.html" class="reveal d1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-accent transition-colors nl">All projects &rarr;</a>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <article class="card-h reveal d1 group rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-accent">
+        <a href="projects.html" class="shot relative block w-full aspect-video overflow-hidden bg-slate-950" aria-label="HIRY — Agentic AI Personal Assistant"><img src="assets/hiry-ui.jpg" alt="HIRY Cognitive OS dashboard" class="w-full h-full object-cover object-top group-hover:scale-105" loading="lazy"><span class="absolute top-3 left-3 z-10 text-xs font-medium bg-accent text-white px-3 py-1 rounded-full shadow">Featured</span><span class="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent"></span></a>
+        <div class="p-7">
+          <div class="flex flex-wrap gap-2 mb-4"><span class="text-xs bg-blue-50 dark:bg-slate-800 text-accent border border-blue-200 dark:border-slate-700 px-3 py-1 rounded-full">AI</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">LLMs</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">RAG</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">n8n</span></div>
+          <h3 class="font-display font-bold text-2xl mb-2"><a href="projects.html">HIRY — Agentic AI Personal Assistant</a></h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">An agentic assistant combining LLMs, RAG, multi-agent collaboration and graph-based long-term memory, with voice interaction and n8n automation.</p>
+          <ul class="flex flex-col gap-1.5 text-sm text-slate-500 dark:text-slate-400"><li class="flex gap-2"><svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span>Voice-only control with a "Hey HIRY" wake phrase</span></li><li class="flex gap-2"><svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span>World, Memory, Projects and Simulation panels</span></li></ul>
+          <a href="projects.html" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium nl">View project &rarr;</a>
+        </div>
+      </article>
+
+      <article class="card-h reveal d2 group rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-accent">
+        <a href="projects.html" class="shot relative block w-full aspect-video overflow-hidden bg-slate-950" aria-label="Emergency-Response Metaverse"><img src="assets/evac-menu.jpg" alt="Emergency-Response Metaverse" class="w-full h-full object-cover object-top group-hover:scale-105" loading="lazy"><span class="absolute top-3 left-3 z-10 text-xs font-medium bg-accent text-white px-3 py-1 rounded-full shadow">Featured</span><span class="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent"></span></a>
+        <div class="p-7">
+          <div class="flex flex-wrap gap-2 mb-4"><span class="text-xs bg-blue-50 dark:bg-slate-800 text-accent border border-blue-200 dark:border-slate-700 px-3 py-1 rounded-full">3D</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Three.js</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">WebGL</span></div>
+          <h3 class="font-display font-bold text-2xl mb-2"><a href="projects.html">Emergency-Response Metaverse</a></h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">A 3D emergency evacuation simulation with real-time fire, smoke and ember particles, first-person navigation, collision handling, HUD and minimap.</p>
+          <ul class="flex flex-col gap-1.5 text-sm text-slate-500 dark:text-slate-400"><li class="flex gap-2"><svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span>Five scenarios: lab, electrical, cafeteria, library and HVAC fires</span></li><li class="flex gap-2"><svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span>Evacuation timer, health bar and minimap</span></li></ul>
+          <a href="projects.html" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium nl">View project &rarr;</a>
+        </div>
+      </article>
+    </div>
+    <h3 class="reveal font-display font-bold text-xl mt-16 mb-6">More projects</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <article class="card-h reveal d1 rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-accent flex flex-col">
+        <div class="relative w-full aspect-[16/8] overflow-hidden bg-slate-900" role="img" aria-label="PEDMED — Personal Medical Assistant"><span class="absolute inset-0 bg-dots opacity-60" aria-hidden="true"></span><span class="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center px-4"><span class="font-display font-bold text-3xl tracking-tight text-white">PEDMED</span><span class="text-[11px] text-stone-300 tracking-widest uppercase">Hackathon project</span></span></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex flex-wrap gap-2 mb-3"><span class="text-xs bg-blue-50 dark:bg-slate-800 text-accent border border-blue-200 dark:border-slate-700 px-3 py-1 rounded-full">AI/ML</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">EfficientNet</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Chatbot</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Hackathon</span></div>
+          <h3 class="font-display font-bold text-xl mb-2"><a href="projects.html">PEDMED — Personal Medical Assistant</a></h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">An AI-powered medical assistant that detects skin and eye diseases from images using an EfficientNet deep learning model.</p>
+        </div>
+      </article>
+
+      <article class="card-h reveal d2 rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-accent flex flex-col">
+        <div class="relative w-full aspect-[16/8] overflow-hidden bg-slate-900" role="img" aria-label="MEDPLUS — Personal Diabetic Assistant"><span class="absolute inset-0 bg-dots opacity-60" aria-hidden="true"></span><span class="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center px-4"><span class="font-display font-bold text-3xl tracking-tight text-white">MEDPLUS</span><span class="text-[11px] text-stone-300 tracking-widest uppercase">Mini-project</span></span></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex flex-wrap gap-2 mb-3"><span class="text-xs bg-blue-50 dark:bg-slate-800 text-accent border border-blue-200 dark:border-slate-700 px-3 py-1 rounded-full">Full-stack</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">API</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Figma</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Mini-project</span></div>
+          <h3 class="font-display font-bold text-xl mb-2"><a href="projects.html">MEDPLUS — Personal Diabetic Assistant</a></h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">A full-stack diabetic management app for all age groups, with diagnostic tests, an AI chatbot and progress tracking.</p>
+        </div>
+      </article>
+
+      <article class="card-h reveal d3 rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-accent flex flex-col">
+        <div class="relative w-full aspect-[16/8] overflow-hidden bg-slate-900" role="img" aria-label="ROUTESYNC — Carpooling Web App"><span class="absolute inset-0 bg-dots opacity-60" aria-hidden="true"></span><span class="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center px-4"><span class="font-display font-bold text-3xl tracking-tight text-white">ROUTESYNC</span><span class="text-[11px] text-stone-300 tracking-widest uppercase">Hackathon project</span></span></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex flex-wrap gap-2 mb-3"><span class="text-xs bg-blue-50 dark:bg-slate-800 text-accent border border-blue-200 dark:border-slate-700 px-3 py-1 rounded-full">MERN</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Full-stack</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Figma</span><span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full">Hackathon</span></div>
+          <h3 class="font-display font-bold text-xl mb-2"><a href="projects.html">ROUTESYNC — Carpooling Web App</a></h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">A full-stack carpooling web app that lets people find, share and manage rides efficiently.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="relative overflow-hidden py-24">
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <div class="mb-12"><p class="reveal  eyebrow text-xs font-medium text-accent tracking-widest uppercase mb-3">What I work with</p><h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl">Where I build</h2></div>
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <div class="reveal d1 group border-t border-slate-200 dark:border-slate-800 hover:border-accent transition-colors pt-6">
+        <svg class="w-6 h-6 text-accent mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        <h3 class="font-display font-bold text-xl mb-2">Full-stack web</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">End-to-end web apps with the MERN stack and Spring Boot, backed by MySQL or MongoDB, with interfaces designed in Figma.</p>
+        <p class="text-xs text-slate-400 tracking-wide">MERN &middot; Spring Boot &middot; MySQL &middot; MongoDB &middot; Figma</p>
+      </div>
+
+      <div class="reveal d2 group border-t border-slate-200 dark:border-slate-800 hover:border-accent transition-colors pt-6">
+        <svg class="w-6 h-6 text-accent mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 7h10v10H7V7z"/></svg>
+        <h3 class="font-display font-bold text-xl mb-2">AI &amp; machine learning</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Deep-learning and data work in Python, from EfficientNet image models to LLM agents with RAG and n8n automation.</p>
+        <p class="text-xs text-slate-400 tracking-wide">Python &middot; TensorFlow &middot; Scikit-learn &middot; LLMs &middot; RAG</p>
+      </div>
+
+      <div class="reveal d3 group border-t border-slate-200 dark:border-slate-800 hover:border-accent transition-colors pt-6">
+        <svg class="w-6 h-6 text-accent mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        <h3 class="font-display font-bold text-xl mb-2">3D &amp; interactive</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Real-time 3D scenes in Three.js and WebGL: lighting, particle effects, first-person navigation and HUDs.</p>
+        <p class="text-xs text-slate-400 tracking-wide">Three.js &middot; WebGL</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="beyond" class="relative overflow-hidden py-24 bg-slate-50 dark:bg-slate-900/40">
+  <div class="bg-dots absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <div class="mb-12"><p class="reveal  eyebrow text-xs font-medium text-accent tracking-widest uppercase mb-3">Beyond code</p><h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl">Away from the keyboard</h2></div>
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="reveal d1 group border-t border-slate-200 dark:border-slate-800 hover:border-accent transition-colors pt-6"><svg class="w-6 h-6 text-accent mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg><h3 class="font-display font-bold text-xl mb-2">Leadership &amp; direction</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">I naturally take the lead: setting direction, keeping a team moving and seeing a vision through. I'm on track to grow into a director role.</p><p class="text-xs text-slate-400 tracking-wide">Leadership &middot; Vision &middot; Team direction</p></div>
+      <div class="reveal d2 group border-t border-slate-200 dark:border-slate-800 hover:border-accent transition-colors pt-6"><svg class="w-6 h-6 text-accent mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg><h3 class="font-display font-bold text-xl mb-2">Scriptwriting</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">I've written three original scripts on climate awareness, mental health, ethical responsibility and suspense: complete stories built on structure, character and dialogue. <a href="about.html#scripts" class="font-medium text-slate-700 dark:text-slate-200 nl">Read them on the About page</a>.</p><p class="text-xs text-slate-400 tracking-wide">6 scripts &middot; Storytelling &middot; Dialogue</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES: optional section like the reference site. Add 2-3 quotes you like here, e.g.
+<blockquote class="font-display text-2xl">"…"<footer class="text-sm text-slate-500 mt-2">Name</footer></blockquote> -->
+
+<section class="relative overflow-hidden py-20 no-print">
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <div class="relative overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 p-10 md:p-14 text-center">
+      <div class="relative z-10 flex flex-col items-center">
+        <p class="text-xs font-medium text-accent tracking-widest uppercase mb-4" style="color:#7FAEE8">Say hello</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">Let's build something together</h2>
+        <p class="text-slate-400 max-w-md mx-auto mb-8">I'm open to AI/ML and full-stack internships and project collaborations.</p>
+        <a href="contact.html" class="inline-flex items-center gap-2 bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors text-sm">Get in touch &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="border-t border-slate-100 dark:border-slate-900">
+  <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate-400">&copy; <span id="yr"></span> Christo Praveen Kumar <span class="mx-1">&middot;</span> Chennai, India</p>
+    <div class="flex gap-3 no-print"><a href="mailto:christopraveenkumar1@gmail.com" aria-label="Email" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a><a href="https://www.linkedin.com/in/christo-praveen-kumar-00892a300/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a><a href="tel:+918489486476" aria-label="Call +91 84894 86476" class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent hover:-translate-y-0.5 transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></a></div>
+  </div>
+</footer>
+
+<script>
+function app() {
+  return {
+    dark: false, mm: false, sc: false, prog: 0, role: 'Full-stack developer',
+    init() {
+      let st = null; try { st = localStorage.getItem('theme'); } catch (e) {}
+      this.dark = st ? st === 'dark' : false;
+      this.$watch('dark', v => { try { localStorage.setItem('theme', v ? 'dark' : 'light'); } catch (e) {} });
+      const onScroll = () => {
+        this.sc = window.scrollY > 20;
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        this.prog = h > 0 ? (window.scrollY / h) * 100 : 0;
+      };
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+      const y = document.getElementById('yr'); if (y) y.textContent = new Date().getFullYear();
+    },
+    printResume() {
+      const d = this.dark; this.dark = false;
+      this.$nextTick(() => { window.print(); this.dark = d; });
+    }
+  };
+}
+</script>
+<script>
+(function(){
+  // cursor spotlight on cards (hover only)
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.addEventListener('mousemove', e => {
+    const c = e.target.closest && e.target.closest('.card-h');
+    if (!c) return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
